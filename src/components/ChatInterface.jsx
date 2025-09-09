@@ -238,8 +238,8 @@ function ChatInterface() {
 
   return (
     <div className="h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex flex-col">
-      {/* Header */}
-      <header className="bg-gray-800 shadow-sm border-b border-gray-700 flex-shrink-0">
+      {/* Fixed Header/Navbar */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800 shadow-sm border-b border-gray-700">
         <div className="w-full px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -263,13 +263,69 @@ function ChatInterface() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 w-full flex flex-col">
-        <div className="bg-gray-800 flex-1 flex flex-col">
-          {/* Chat Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-1">
+      {/* Fixed Bottom Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-gray-800 border-t border-gray-700 p-4">
+        <form onSubmit={handleSendMessage} className="flex space-x-3">
+          {/* Disconnect/Start Button */}
+          <button
+            type="button"
+            onClick={isConnected ? handleDisconnect : handleStartChat}
+            className={`flex items-center space-x-2 flex-shrink-0 ${
+              isConnected 
+                ? (showDisconnectConfirm ? 'bg-orange-500 hover:bg-orange-600' : 'btn-danger')
+                : 'btn-primary'
+            } text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
+          >
+            {isConnected ? (
+              <>
+                <PhoneOff className="w-4 h-4" />
+                <span className="hidden sm:inline">
+                  {showDisconnectConfirm ? 'Really?' : 'Disconnect'}
+                </span>
+              </>
+            ) : (
+              <>
+                <Users className="w-4 h-4" />
+                <span className="hidden sm:inline">Start</span>
+              </>
+            )}
+          </button>
+          
+          {/* Message Input */}
+          <input
+            type="text"
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            placeholder={
+              !isConnected 
+                ? "Start chat to begin messaging..." 
+                : isPaired 
+                  ? "Type your message..." 
+                  : "Waiting for a stranger..."
+            }
+            className="input-field flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
+            maxLength={1000}
+            disabled={!isPaired}
+          />
+          
+          {/* Send Button */}
+          <button
+            type="submit"
+            disabled={!inputMessage.trim() || !isPaired}
+            className="btn-primary flex items-center space-x-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <Send className="w-4 h-4" />
+            <span className="hidden sm:inline">Send</span>
+          </button>
+        </form>
+      </div>
+
+      {/* Scrollable Content Area */}
+      <main className="flex-1 pt-20 pb-24 overflow-hidden">
+        <div className="h-full bg-gray-800 overflow-y-auto">
+          <div className="p-4 space-y-1">
             {messages.length === 0 && !isWaiting && (
-              <div className="flex items-center justify-center h-full">
+              <div className="flex items-center justify-center h-full min-h-[400px]">
                 <div className="text-center">
                   <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                   <h2 className="text-xl font-semibold text-white mb-2">
@@ -289,7 +345,7 @@ function ChatInterface() {
             )}
 
             {isWaiting && isConnected && (
-              <div className="flex items-center justify-center h-full">
+              <div className="flex items-center justify-center h-full min-h-[400px]">
                 <div className="text-center">
                   <Loader2 className="w-16 h-16 text-blue-500 animate-spin mx-auto mb-4" />
                   <h2 className="text-xl font-semibold text-white mb-2">
@@ -306,63 +362,6 @@ function ChatInterface() {
               <ChatMessage key={message.id} message={message} />
             ))}
             <div ref={messagesEndRef} />
-          </div>
-
-          {/* Input Area and Controls - Always Visible */}
-          <div className="border-t border-gray-700 p-4">
-            <form onSubmit={handleSendMessage} className="flex space-x-3">
-              {/* Disconnect/Start Button */}
-              <button
-                type="button"
-                onClick={isConnected ? handleDisconnect : handleStartChat}
-                className={`flex items-center space-x-2 flex-shrink-0 ${
-                  isConnected 
-                    ? (showDisconnectConfirm ? 'bg-orange-500 hover:bg-orange-600' : 'btn-danger')
-                    : 'btn-primary'
-                } text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
-                {isConnected ? (
-                  <>
-                    <PhoneOff className="w-4 h-4" />
-                    <span className="hidden sm:inline">
-                      {showDisconnectConfirm ? 'Really?' : 'Disconnect'}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <Users className="w-4 h-4" />
-                    <span className="hidden sm:inline">Start</span>
-                  </>
-                )}
-              </button>
-              
-              {/* Message Input */}
-              <input
-                type="text"
-                value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
-                placeholder={
-                  !isConnected 
-                    ? "Start chat to begin messaging..." 
-                    : isPaired 
-                      ? "Type your message..." 
-                      : "Waiting for a stranger..."
-                }
-                className="input-field flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
-                maxLength={1000}
-                disabled={!isPaired}
-              />
-              
-              {/* Send Button */}
-              <button
-                type="submit"
-                disabled={!inputMessage.trim() || !isPaired}
-                className="btn-primary flex items-center space-x-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <Send className="w-4 h-4" />
-                <span className="hidden sm:inline">Send</span>
-              </button>
-            </form>
           </div>
         </div>
       </main>
