@@ -19,8 +19,4 @@
       ]
     }
   ],
-  "env": {
-    "VITE_WS_URL": "@vite_ws_url",
-    "VITE_API_URL": "@vite_api_url"
-  }
 }
