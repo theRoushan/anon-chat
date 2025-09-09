@@ -22,8 +22,8 @@ const LandingPage = () => {
   const features = [
     {
       icon: <MessageCircle className="w-6 h-6" />,
-      title: "Instant Anonymous Chat",
-      description: "Start chatting with strangers immediately. No registration, no personal information required."
+      title: "Instant Anonymous Chat Room",
+      description: "Start anonymous chat with strangers immediately. No registration, no personal information required. Join our anonymous chat rooms now."
     },
     {
       icon: <Zap className="w-6 h-6" />,
@@ -32,23 +32,23 @@ const LandingPage = () => {
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "100% Anonymous",
-      description: "Your identity stays private. Chat freely without revealing who you are."
+      title: "100% Anonymous Chat",
+      description: "Your identity stays completely private. Chat anonymously with strangers without revealing who you are. Secure anonymous messaging."
     },
     {
       icon: <Globe className="w-6 h-6" />,
-      title: "Global Community",
-      description: "Connect with people from around the world. Discover new perspectives and cultures."
+      title: "Global Anonymous Chat",
+      description: "Connect with strangers from around the world in anonymous chat rooms. Discover new perspectives and cultures through anonymous conversations."
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Safe Environment",
-      description: "Built-in moderation and safety features ensure a positive experience for everyone."
+      title: "Safe Anonymous Chat",
+      description: "Built-in moderation and safety features ensure a positive anonymous chat experience. Chat with strangers safely and securely."
     },
     {
       icon: <Heart className="w-6 h-6" />,
-      title: "Meaningful Connections",
-      description: "Find friendship, support, or just have fun conversations with interesting people."
+      title: "Meaningful Anonymous Connections",
+      description: "Find friendship, support, or just have fun anonymous conversations with interesting strangers. Build connections through anonymous chat."
     }
   ]
 
@@ -56,19 +56,19 @@ const LandingPage = () => {
     {
       name: "Sarah Chen",
       role: "Student",
-      content: "I love how I can meet new people without any pressure. The conversations are always interesting!",
+      content: "I love how I can chat with strangers anonymously without any pressure. The anonymous chat conversations are always interesting!",
       rating: 5
     },
     {
       name: "Marcus Johnson",
       role: "Designer",
-      content: "Perfect for when I need a break from work. Quick, anonymous, and surprisingly meaningful chats.",
+      content: "Perfect for when I need a break from work. Quick anonymous chat with strangers, surprisingly meaningful conversations.",
       rating: 5
     },
     {
       name: "Emily Rodriguez",
       role: "Writer",
-      content: "As an introvert, this gives me a safe way to practice socializing. The anonymity makes it comfortable.",
+      content: "As an introvert, this gives me a safe way to practice socializing through anonymous chat. The anonymity makes it comfortable.",
       rating: 5
     }
   ]
@@ -94,16 +94,15 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Chat with{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                Strangers
+                Anonymous Chat
               </span>
               <br />
-              Anonymously
+              with Strangers Online
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Connect with people from around the world in safe, anonymous conversations. 
-              No registration required, no personal information shared. Just pure, authentic human connection.
+              Join thousands of users in our anonymous chat rooms. Chat with strangers online safely and securely. 
+              No registration required, no personal information shared. Start anonymous conversations instantly!
             </p>
             <div className="flex justify-center items-center">
               <button
@@ -111,7 +110,7 @@ const LandingPage = () => {
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl"
               >
                 <MessageCircle className="w-5 h-5" />
-                <span>Start Chatting Now</span>
+                <span>Start Anonymous Chat</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
@@ -127,10 +126,10 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Why Choose ChatAnon?
+              Best Anonymous Chat Platform
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Experience the future of anonymous social connection with our cutting-edge platform.
+              Experience the safest and most secure anonymous chat with strangers online. Join our global community today.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -182,10 +181,10 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What Our Users Say
+              Anonymous Chat Reviews
             </h2>
             <p className="text-xl text-gray-300">
-              Join thousands of satisfied users who've found meaningful connections.
+              Join thousands of satisfied users who've found meaningful connections through anonymous chat with strangers.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -213,17 +212,17 @@ const LandingPage = () => {
       <section className="py-20 bg-gradient-to-r from-gray-700 to-gray-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Start Your Journey?
+            Ready to Start Anonymous Chat?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Join the conversation. Meet new people. Discover new perspectives. All completely anonymous.
+            Join thousands of users in anonymous chat rooms. Chat with strangers online safely and securely. All completely anonymous.
           </p>
           <button
             onClick={handleStartChat}
             className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 flex items-center space-x-2 mx-auto shadow-lg hover:shadow-xl"
           >
             <MessageCircle className="w-5 h-5" />
-            <span>Start Chatting Now</span>
+            <span>Start Anonymous Chat Now</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
@@ -241,16 +240,16 @@ const LandingPage = () => {
                 <span className="text-xl font-bold">ChatAnon</span>
               </div>
               <p className="text-gray-400">
-                Connect with strangers anonymously. Safe, secure, and completely free.
+                The best anonymous chat platform to connect with strangers online. Safe, secure, and completely free anonymous chat rooms.
               </p>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Features</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>Anonymous Chat</li>
-                <li>Global Community</li>
-                <li>Safe Environment</li>
-                <li>No Registration</li>
+                <li>Anonymous Chat with Strangers</li>
+                <li>Anonymous Chat Rooms</li>
+                <li>Safe Anonymous Chat</li>
+                <li>No Registration Required</li>
               </ul>
             </div>
             <div>
