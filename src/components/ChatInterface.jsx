@@ -277,7 +277,7 @@ function ChatInterface() {
                 } text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 {isConnected ? (
-                  showDisconnectConfirm ? 'Really?' : 'Disconnect'
+                  showDisconnectConfirm ? 'Really?' : 'Skip'
                 ) : (
                   'Start'
                 )}
@@ -313,47 +313,54 @@ function ChatInterface() {
 
       {/* Scrollable Content Area */}
       <main className="flex-1 pt-20 pb-24 overflow-hidden">
-        <div className="h-full bg-gray-800 overflow-y-auto">
-          <div className="p-4 space-y-1">
-            {messages.length === 0 && !isWaiting && (
-              <div className="flex items-center justify-center h-full min-h-[400px]">
-                <div className="text-center">
-                  <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                  <h2 className="text-xl font-semibold text-white mb-2">
-                    Welcome to Anonymous Chat
-                  </h2>
-                  <p className="text-gray-300 mb-6">
-                    Click "Start Chat" to begin talking with a random stranger
-                  </p>
-                  <button
-                    onClick={handleStartChat}
-                    className="btn-primary text-lg px-8 py-3"
-                  >
-                    Start Chat
-                  </button>
-                </div>
+        <div className="h-full bg-gray-800 overflow-y-auto flex flex-col">
+          {/* Welcome/Empty State */}
+          {messages.length === 0 && !isWaiting && (
+            <div className="flex-1 flex items-center justify-center">
+              <div className="text-center">
+                <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h2 className="text-xl font-semibold text-white mb-2">
+                  Welcome to Anonymous Chat
+                </h2>
+                <p className="text-gray-300 mb-6">
+                  Click "Start Chat" to begin talking with a random stranger
+                </p>
+                <button
+                  onClick={handleStartChat}
+                  className="btn-primary text-lg px-8 py-3"
+                >
+                  Start Chat
+                </button>
               </div>
-            )}
+            </div>
+          )}
 
-            {isWaiting && isConnected && (
-              <div className="flex items-center justify-center h-full min-h-[400px]">
-                <div className="text-center">
-                  <Loader2 className="w-16 h-16 text-blue-500 animate-spin mx-auto mb-4" />
-                  <h2 className="text-xl font-semibold text-white mb-2">
-                    Looking for a stranger...
-                  </h2>
-                  <p className="text-gray-300">
-                    Please wait while we find someone to chat with
-                  </p>
-                </div>
+          {/* Waiting State */}
+          {isWaiting && isConnected && (
+            <div className="flex-1 flex items-center justify-center">
+              <div className="text-center">
+                <Loader2 className="w-16 h-16 text-blue-500 animate-spin mx-auto mb-4" />
+                <h2 className="text-xl font-semibold text-white mb-2">
+                  Looking for a stranger...
+                </h2>
+                <p className="text-gray-300">
+                  Please wait while we find someone to chat with
+                </p>
               </div>
-            )}
+            </div>
+          )}
 
-            {messages.map((message) => (
-              <ChatMessage key={message.id} message={message} />
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
+          {/* Messages Container - positioned at bottom */}
+          {messages.length > 0 && (
+            <div className="flex-1 flex flex-col justify-end">
+              <div className="p-4 space-y-1">
+                {messages.map((message) => (
+                  <ChatMessage key={message.id} message={message} />
+                ))}
+                <div ref={messagesEndRef} />
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </div>
