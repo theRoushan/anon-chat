@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Send, PhoneOff, Users, Loader2, MessageCircle } from 'lucide-react'
+import { Users, Loader2, MessageCircle } from 'lucide-react'
 import ChatMessage from './ChatMessage'
 import useWebSocket from '../hooks/useWebSocket'
 import useOnlineUsers from '../hooks/useOnlineUsers'
@@ -267,29 +267,21 @@ function ChatInterface() {
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-gray-800 border-t border-gray-700 p-4">
         <form onSubmit={handleSendMessage} className="flex space-x-3">
           {/* Disconnect/Start Button */}
-          <button
-            type="button"
-            onClick={isConnected ? handleDisconnect : handleStartChat}
-            className={`flex items-center space-x-2 flex-shrink-0 ${
-              isConnected 
-                ? (showDisconnectConfirm ? 'bg-orange-500 hover:bg-orange-600' : 'btn-danger')
-                : 'btn-primary'
-            } text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
-          >
-            {isConnected ? (
-              <>
-                <PhoneOff className="w-4 h-4" />
-                <span className="hidden sm:inline">
-                  {showDisconnectConfirm ? 'Really?' : 'Disconnect'}
-                </span>
-              </>
-            ) : (
-              <>
-                <Users className="w-4 h-4" />
-                <span className="hidden sm:inline">Start</span>
-              </>
-            )}
-          </button>
+              <button
+                type="button"
+                onClick={isConnected ? handleDisconnect : handleStartChat}
+                className={`flex items-center justify-center flex-shrink-0 ${
+                  isConnected 
+                    ? (showDisconnectConfirm ? 'bg-orange-500 hover:bg-orange-600' : 'btn-danger')
+                    : 'btn-primary'
+                } text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                {isConnected ? (
+                  showDisconnectConfirm ? 'Really?' : 'Disconnect'
+                ) : (
+                  'Start'
+                )}
+              </button>
           
           {/* Message Input */}
           <input
@@ -309,14 +301,13 @@ function ChatInterface() {
           />
           
           {/* Send Button */}
-          <button
-            type="submit"
-            disabled={!inputMessage.trim() || !isPaired}
-            className="btn-primary flex items-center space-x-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <Send className="w-4 h-4" />
-            <span className="hidden sm:inline">Send</span>
-          </button>
+              <button
+                type="submit"
+                disabled={!inputMessage.trim() || !isPaired}
+                className="btn-primary flex items-center justify-center flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Send
+              </button>
         </form>
       </div>
 
