@@ -115,7 +115,7 @@ const LandingPage = () => {
               </button>
             </div>
             <p className="text-sm text-gray-400 mt-4">
-              {!isLoading && `${onlineCount} users online now`} • 100% Free • No Registration Required
+              {!isLoading && `${onlineCount.toLocaleString()} users online now`} • 100% Free • No Registration Required
             </p>
           </div>
         </div>
@@ -156,7 +156,7 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold text-blue-400 mb-2">
-                {isLoading ? '...' : onlineCount}
+                {isLoading ? '...' : onlineCount.toLocaleString()}
               </div>
               <div className="text-gray-300">Online Now</div>
             </div>

@@ -5,20 +5,23 @@ const useOnlineUsers = (interval = 10000) => {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  const generateMockOnlineCount = () => {
+    // Generate random number between 5000 and 6000
+    const min = 5000
+    const max = 6000
+    const randomCount = Math.floor(Math.random() * (max - min + 1)) + min
+    console.log('🎭 [useOnlineUsers] Generated mock online count:', randomCount)
+    return randomCount
+  }
+
   const fetchOnlineCount = async () => {
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001'
-      const response = await fetch(`${baseUrl}/api/users/online`)
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const data = await response.json()
-      setOnlineCount(data.count)
+      // Mock the API call with a random number between 5000-6000
+      const mockCount = generateMockOnlineCount()
+      setOnlineCount(mockCount)
       setError(null)
     } catch (err) {
-      console.error('Failed to fetch online users count:', err)
+      console.error('❌ [useOnlineUsers] Mock error:', err)
       setError(err.message)
     } finally {
       setIsLoading(false)
