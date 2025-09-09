@@ -1,0 +1,15 @@
+# Ignore Docker files to force Node.js buildpack
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Ignore development files
+node_modules
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore build artifacts
+dist
+build
